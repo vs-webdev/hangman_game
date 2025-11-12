@@ -1,11 +1,15 @@
 import './App.css'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import MainMenu from './pages/MainMenu'
 
 function App() {
   return (
     <>
-      <div>
-        Hangman
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<MainMenu />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
