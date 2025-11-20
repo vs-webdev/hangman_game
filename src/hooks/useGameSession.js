@@ -40,3 +40,5 @@ const useGameSession = (categories, phraseTracker) => {
 
   return {session, startNewSession, clearSession}
 }
+
+export default useGameSession
