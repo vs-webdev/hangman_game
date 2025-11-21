@@ -1,51 +1,14 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext } from "react";
 import data from "../data.json"
-import getRandomItem from "../utils/getRandomItem";
+import useGameLogic from "../hooks/useGameLogic";
 
 const GameContext = createContext(null)
 
 export const GameProvider = ({children}) => {
-  const [categories, setCategories] = useState(data.categories)
-  const [selectedCategory, setSelectedCategory] = useState(null)
-  const [selectedName, setSelectedName] = useState(null)
-
-  useEffect(() => {
-    if (!selectedCategory) return;
-
-    const list = categories[selectedCategory];
-    if (!list) return;
-
-    const randomItem = getRandomItem(list);
-    if (!randomItem) {
-      setSelectedName(null);
-      return;
-    }
-
-    // Update selectedName
-    setSelectedName(randomItem.name);
-
-    // Mark item as selected in categories state
-    const updatedList = list.map(item =>
-      item.name === randomItem.name
-        ? { ...item, selected: true }
-        : item
-    );
-
-    setCategories(prev => ({
-      ...prev,
-      [selectedCategory]: updatedList
-    }));
-
-  }, [selectedCategory]);
-  
-  const value = {
-    selectedName,
-    selectedCategory, setSelectedCategory,
-    categories, setCategories,
-  }
+  const game = useGameLogic(data.categories)
 
   return (
-    <GameContext.Provider value={value}>
+    <GameContext.Provider value={game}>
       {children}
     </GameContext.Provider>
   )
