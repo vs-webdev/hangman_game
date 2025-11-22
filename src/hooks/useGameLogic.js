@@ -33,7 +33,8 @@ const useGameLogic = (categories) => {
     if (gameStatus.status !== GAME_STATUS.PLAYING) return;
     if (isGameWon(grid)) {
       gameStatus.markWon()
-    } else if (guessTracker.wrongGuesses >= GAME_STATUS.MAX_WRONG_GUESSES) {
+    } else if (guessTracker.wrongGuesses >= GAME_CONFIGS.MAX_WRONG_GUESSES) {
+      console.log('hi')
       revealAll();
       gameStatus.markLost()
     }
