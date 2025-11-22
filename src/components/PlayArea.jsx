@@ -6,7 +6,7 @@ import MysteryWord from "./MysteryWord"
 import { useGame } from '../context/GameContext'
 
 const PlayArea = () => {
-  const {category, guessLetter, grid} = useGame()
+  const {category, guessLetter, grid, guessedLetters, status} = useGame()
 
   return (
     <div className='min-w-300 w-full'>
@@ -22,8 +22,8 @@ const PlayArea = () => {
         </div>
       </header>
 
-      <MysteryWord grid={grid} />
-      <VirtualKeyboard guessLetter={guessLetter} />
+      <MysteryWord grid={grid} status={status}/>
+      <VirtualKeyboard guessLetter={guessLetter} guessedLetters={guessedLetters} />
     </div>
   )
 }
