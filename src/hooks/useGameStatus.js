@@ -7,9 +7,10 @@ const useGameStatus = () => {
   return {
     status,
     startPlaying: useCallback(() => setStatus(GAME_STATUS.PLAYING), []),
+    pause: useCallback(() => setStatus(GAME_STATUS.PAUSED), []),
     markWon: useCallback(() => setStatus(GAME_STATUS.WON), []),
     markLost: useCallback(() => setStatus(GAME_STATUS.LOST), []),
-    rest: useCallback(() => setStatus(GAME_STATUS.IDLE), []),
+    reset: useCallback(() => setStatus(GAME_STATUS.IDLE), []),
   }
 }
 
