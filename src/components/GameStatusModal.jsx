@@ -35,7 +35,7 @@ const GameStatusModal = ({onCloseModal}) => {
     paused: {
       heading: 'Paused', 
       buttons: [
-        {title: 'continue', func: onClose},
+        {title: 'continue', func: onCloseModal},
         {title: 'new category', func: () => quit()},
         {title: 'quit game', func: handleQuit}
       ]
