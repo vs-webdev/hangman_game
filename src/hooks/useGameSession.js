@@ -30,9 +30,9 @@ const useGameSession = (categories, phraseTracker) => {
     return true;
   }, [categories, phraseTracker])
 
-  const clearSession = useCallback(() => {
+  const clearSession = useCallback((category = null) => {
     setSession({
-      category: null,
+      category: category,
       phrase: null,
       grid: []
     })

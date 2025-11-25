@@ -31,14 +31,21 @@ const useGameLogic = (categories) => {
 
   useEffect(() => {
     if (gameStatus.status !== GAME_STATUS.PLAYING) return;
+
     if (isGameWon(grid)) {
+      console.log('i am marking it won', grid)
       gameStatus.markWon()
+      clearSession(session.category)
     } else if (guessTracker.wrongGuesses >= GAME_CONFIGS.MAX_WRONG_GUESSES) {
-      console.log('hi')
       revealAll();
       gameStatus.markLost()
+      clearSession(session.category)
     }
   }, [grid, guessTracker.wrongGuesses, gameStatus, revealAll])
+
+  const pause = () => {
+    gameStatus.pause()
+  }
 
   const playAgain = useCallback(() => {
     if (session.category) startGame(session.category)
@@ -47,7 +54,7 @@ const useGameLogic = (categories) => {
   const quit = useCallback(() => {
     clearSession();
     guessTracker.reset();
-    gameStatus.reset()
+    gameStatus.reset();
   }, [clearSession, guessTracker, gameStatus])
 
   return {
@@ -58,6 +65,7 @@ const useGameLogic = (categories) => {
     wrongGuesses: guessTracker.wrongGuesses,
     remainingLives: guessTracker.remainingLives,
     status: gameStatus.status,
+    pause,
     startGame,
     guessLetter,
     playAgain,
