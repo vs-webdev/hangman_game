@@ -11,22 +11,24 @@ const Rules = () => {
   ]
 
   return (
-    <div className="w-full">
-      <div className="flex items-center w-full mb-12">
+    <div className="w-full p-6">
+      <div className="flex items-center justify-between w-full mb-12">
         <ActionBUtton icon={backIcon} func={() => navigate(-1)} />
-        <span className='text-9xl mx-auto text-transparent bg-clip-text bg-[linear-gradient(180deg,#67b6ff_16.42%,#fff)]'>How to Play</span>
+        <span className='text-6xl sm:text-9xl sm:mx-auto text-transparent bg-clip-text bg-[linear-gradient(180deg,#67b6ff_16.42%,#fff)]'>How to Play</span>
       </div>
 
       {/* Rules */}
-      <ul className="flex gap-8">
+      <ul className="flex flex-col sm:flex-row gap-8">
         {
           rules.map(rule => (
             <li key={rule.serial}
-              className="bg-neutral-100 flex-1 text-neutral-800 p-8 rounded-[2rem] hover:scale-102 transition-all ease-in-out"
+              className="bg-neutral-100 flex-1 text-left sm:text-center text-neutral-800 p-7 sm:p-8 rounded-[1.2rem] sm:rounded-[2rem] cursor-default hover:scale-102 transition-all ease-in-out"
             >
-              <span className="text-7xl text-[#2463ff]">0{rule.serial}</span>
-              <h1 className="text-5xl my-6 uppercase text-[#261676]">{rule.heading}</h1>
-              <p className="text-3xl text-[#887dc0]">{rule.para}</p>
+              <div className="flex sm:flex-col gap-x-4 mb-2">
+                <span className="text-2xl sm:text-7xl flex items-center sm:justify-center text-[#2463ff]">0{rule.serial}</span>
+                <h1 className="text-2xl sm:text-5xl sm:my-6 uppercase text-[#261676]">{rule.heading}</h1>
+              </div>
+              <p className="text-lg sm:text-3xl leading-6 sm:leading-9 text-[#887dc0]">{rule.para}</p>
             </li>
           ))
         }

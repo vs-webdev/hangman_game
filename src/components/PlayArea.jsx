@@ -27,27 +27,29 @@ const PlayArea = () => {
   }, [status])
 
   return (
-    <div className='min-w-300 w-full'>
-      <header className='flex items-center justify-between w-full mb-20'>
-        <div className='flex items-center gap-8'>
+    <div className='sm:min-w-300 w-full min-h-screen flex flex-col p-4 py-8'>
+      <header className='flex items-center justify-between w-full mb-15 sm:mb-20'>
+        <div className='flex items-center gap-4 sm:gap-12'>
           <ActionButton icon={menuIcon} func={() => showModal()}/>
-          <span className='text-8xl'>{category}</span>
+          <span className='text-3xl sm:text-8xl'>{category}</span>
         </div>
 
         {/** Lives */}
-        <div className="flex items-center gap-8 h-full">
-          <div className="flex items-center justify-start w-60 h-7 bg-neutral-100 rounded-full border-8">
+        <div className="flex items-center gap-4 sm:gap-12 h-full">
+          <div className="flex items-center justify-start w-20 sm:w-60 h-4 sm:h-7 bg-neutral-100 rounded-full border-4 sm:border-8">
             <div 
               className="h-full bg-[#261676] rounded-full transition-all duration-500 ease"
               style={{width: `${lifePercentage}%`}}
             ></div>
           </div>
-          <img src={heartIcon} alt="Heart" />
+          <img src={heartIcon} alt="Heart" className="w-[2rem] sm:w-14"/>
         </div>
       </header>
 
-      <MysteryWord grid={grid} status={status}/>
-      <VirtualKeyboard guessLetter={guessLetter} guessedLetters={guessedLetters} />
+      <div className="flex-1 h-full flex flex-col py-8 sm:py-4 justify-between">
+        <MysteryWord grid={grid} status={status}/>
+        <VirtualKeyboard guessLetter={guessLetter} guessedLetters={guessedLetters} />
+      </div>
 
       {isModalOpen && <GameStatusModal onCloseModal={() => setIsModalOpen(false)} />}
     </div>

@@ -3,14 +3,14 @@ const VirtualKeyboard = ({guessLetter, guessedLetters}) => {
   const virtualKeyboard = Array.from({length: 26}, (_, i) => String.fromCharCode('a'.charCodeAt(0) + i))
   
   return (
-    <ul className="grid grid-rows-3 grid-cols-9 gap-6 w-full">
+    <ul className="grid grid-rows-3 grid-cols-9 gap-3 sm:gap-6 w-full">
       {
         virtualKeyboard.map((letter, index) => {
           const isDisabled = guessedLetters.has(letter)
           return (
             <li key={index} className="w-full">
               <button
-                className={`py-4 w-full text-4xl uppercase rounded-2xl transition-colors duration-200
+                className={`py-2 sm:py-4 w-full text-3xl sm:text-4xl uppercase rounded-lg sm:rounded-2xl transition-colors duration-200
                   ${
                     isDisabled
                       ? 'bg-gray-300 text-gray-500 cursor-default opacity-50'

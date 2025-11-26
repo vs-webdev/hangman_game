@@ -3,11 +3,12 @@ import PlayArea from '../components/PlayArea'
 import { useGame } from '../context/GameContext'
 
 const Game = () => {
-  const {selectedCategory} = useGame()
+  const {category} = useGame()
+  
   return (
     <div className='w-full'>
       {
-        !selectedCategory
+        !category
         ? <Categories />
         : <PlayArea />
       }
