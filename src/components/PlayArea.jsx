@@ -13,6 +13,22 @@ const PlayArea = () => {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const lifePercentage = Math.max(0, (remainingLives / GAME_CONFIGS.MAX_WRONG_GUESSES) * 100);
 
+  // Handle keyboard key pressed down
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (status !== 'playing') return;
+      const key = event.key.toLowerCase()
+
+      // Check if it's a letter between a to z
+      if (key.length === 1 && key >= 'a' && key <= 'z') {
+        guessLetter(key)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [status, guessLetter])
+
   const showModal = () => {
     setIsModalOpen(true)
     pause()
