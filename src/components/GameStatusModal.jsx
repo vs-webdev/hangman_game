@@ -53,7 +53,12 @@ const GameStatusModal = ({onCloseModal}) => {
             modalConfigs[status].buttons.map((button, index) => (
               <li key={index}>
                 <button
-                  className="px-15 sm:px-20 py-3 rounded-full text-2xl sm:text-3xl uppercase bg-[#2463ff] hover:bg-[#4d81ff] hover:scale-102 transition-all ease-in-out shadow-[inset_0_.3rem_0_.2rem_#3c74ff,_0_.1rem_0_.3rem_#140e66] cursor-pointer"
+                  className={
+                    `px-15 sm:px-20 py-3 rounded-full text-2xl sm:text-3xl uppercase hover:scale-102 transition-all ease-in-out cursor-pointer
+                    ${button.title === "quit game" 
+                      ? "bg-[linear-gradient(180deg,#fe71fe_16.42%,#7199ff)] shadow-[inset_0_.3rem_0_.2rem_#c642fb,_0_.1rem_0_.3rem_#140e66] hover:bg-[linear-gradient(0deg,hsla(0,0%,100%,.25),hsla(0,0%,100%,.25)),linear-gradient(180deg,#fe71fe_16.42%,#7199ff)]" 
+                      : "bg-[#2463ff] shadow-[inset_0_.3rem_0_.2rem_#3c74ff,_0_.1rem_0_.3rem_#140e66] hover:bg-[#4d81ff]"}`
+                  }
                   onClick={button.func}
                 >
                   {button.title}
